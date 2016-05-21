@@ -35,10 +35,15 @@ require_once('../controlador/Categoria_Controlador.php');
 		<script src="js/miEstilo.js"></script>
 		<script type="text/javascript" src="js/Tablejquery-latest.js"></script> 
 		<script type="text/javascript" src="js/Table/jquery.tablesorter.min.js"></script> 
-
+		<script src="js/list.min.js"></script>
 
 		<script>
 		$(document).ready(function() {
+				var options = {
+  				valueNames: [ 'nombre', 'marca', 'categoria', 'precio', 'acciones' ]
+						};
+
+				var productosList = new List('productos', options);
 
 			$("#Tabla_Productos").tablesorter();
 			$("#Tabla_Productos").tablesorter( {sortList: [[0,0], [1,0]]} );
@@ -224,16 +229,21 @@ require_once('../controlador/Categoria_Controlador.php');
 <?php require_once('menu_administrador.php'); ?>
 
 	<div class="container">
-		<h1>Lista de Productos</h1>
+		<h1 class="text-center">Lista de Productos</h1>
+	<hr />
+		 	
 
-		 
-		  		<label for="busquedad">Buscar: </label>
-		  		<input id="txt-busquedad">
 		
-
-		<hr>
 <div class="row">
-	<div class="">
+	<div id="productos">
+
+			<div class="text-right">
+		  		<label for="busquedad">Buscar: </label>
+		  		<input class="search" id="txt-busquedad">
+		  	
+			</div>
+			<br/>
+
 		<div class="panel panel-default">
 		  <!-- Default panel contents -->
 		  	<div class="panel-heading text-center col-xd-10"> <i class="fa fa-list-alt"></i>  <strong> LISTA DE PRODUCTOS</strong> </div>
@@ -254,27 +264,27 @@ require_once('../controlador/Categoria_Controlador.php');
 					    </tr>
 					<thead>
 
-					<tbody>
+					<tbody class="list">
 					<?php foreach (lista_general_producto() as $ListP) { ?>
 					<tr>	
 						
-						<td> <?php echo $ListP['nombre_producto']; ?> </td>
+						<td class="nombre"> <?php echo $ListP['nombre_producto']; ?> </td>
 
-						<td> <?php foreach(mostrar_especifico_marca($ListP['id_marca']) as $ListM){
+						<td class="marca"> <?php foreach(mostrar_especifico_marca($ListP['id_marca']) as $ListM){
 
 								echo $ListM['nombre_marca'];
 
 						}  ?> </td>
 
-						<td> <?php foreach(lista_categoria_especifica($ListP['id_categoria']) as $ListC){
+						<td class="categoria"> <?php foreach(lista_categoria_especifica($ListP['id_categoria']) as $ListC){
 
 								echo $ListC['nombre_categoria'];
 
 						}  ?> </td>
 						
-						<td> <?php echo $ListP['precio']; ?> </td>
+						<td class="precio"> <?php echo $ListP['precio']; ?> </td>
 
-						<td>
+						<td class="acciones">
 
 						<button class="btn btn-warning" id="<?php echo 'editar-'.$ListP['id_producto'];  ?>" title="Editar"> <i class="glyphicon glyphicon-pencil"> </i></button>
 						<button class="btn btn-danger" id="<?php echo 'eliminar-'.$ListP['id_producto'];  ?>" title="Eliminar"> <i class="glyphicon glyphicon-trash"> </i></button>
