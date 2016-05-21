@@ -33,9 +33,19 @@ require_once('../controlador/Categoria_Controlador.php');
 		<script src="js/bootbox.min.js"></script>
 		<script src="js/jquery-ui.js"></script>
 		<script src="js/miEstilo.js"></script>
+		<script type="text/javascript" src="js/Tablejquery-latest.js"></script> 
+		<script type="text/javascript" src="js/Table/jquery.tablesorter.min.js"></script> 
+
 
 		<script>
 		$(document).ready(function() {
+
+			$("#Tabla_Productos").tablesorter();
+			$("#Tabla_Productos").tablesorter( {sortList: [[0,0], [1,0]]} );
+			$("#Tabla_Productos").tablesorter({ 
+        // sort on the first column and third column, order asc 
+        sortList: [[0,0],[2,0]] 
+    }); 
 			
 			var listasProducto = "";
 			var Arreglo = new Array();
@@ -230,28 +240,23 @@ require_once('../controlador/Categoria_Controlador.php');
 		  	
 
 		  <!-- Table -->
-			  	<table class="table table-striped table-hover text-center">
+			  	<table cellspacing="1" class="table table-striped table-hover tablesorter" id="Tabla_Productos">
+					<thead>
+					  	<tr class="text-center">
+					    	<th><a> Nombre </a> </th>
 
-					  	<tr>
-					    	<td><strong> Nombre </strong> </td>
+					    	<th><a> Marca</a></th>
 
-					    	<td><strong> Marca</strong></td>
-
-					    	<td><strong> Categoria </strong></td>
+					    	<th><a> Categoria </a></th>
 					    	
-					    	<td><strong> Precio </strong></td>
+					    	<th><a> Precio </a></th>
 
-					    	<td><strong> Acciones</strong></td>
+					    	<th><a> Acciones</a></th>
 
 					    </tr>
-					    <tr> 
-							<td> </td>
-							<td> </td>
-							<td> </td>
-							<td> </td>
-							<td> </td>
-					    </tr>
+					<thead>
 
+					<tbody>
 					<?php foreach (lista_general_producto() as $ListP) { ?>
 					<tr>	
 						
@@ -279,8 +284,9 @@ require_once('../controlador/Categoria_Controlador.php');
 
 						</td>
 
-					</tr>
-					<?php } ?>
+						</tr>
+						<?php } ?>
+					</tbody>
 
 				</table>
 			
@@ -295,7 +301,7 @@ require_once('../controlador/Categoria_Controlador.php');
    				<div class="modal-content">
       				<div class="modal-header">
         				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        				<h4 class="modal-title">Editar Producto</h4>
+        				<h4 class="modal-title text-center">Editar Producto</h4>
       				</div>
 
       				<div class="modal-body">
@@ -328,7 +334,7 @@ require_once('../controlador/Categoria_Controlador.php');
     							<input type="text" class="form-control" name="precio" id="Editar_Precio_Producto">
   							</div>
 							
-  							<label>Descripcion: </label> <textarea class="form-control" rows="3" id="Editar_Descripcion_Producto" name="descripcion"></textarea>
+  							<label>Descripcion: </label> <textarea class="form-control" rows="5" id="Editar_Descripcion_Producto" name="descripcion"></textarea>
 
 			 
 			 
@@ -348,7 +354,7 @@ require_once('../controlador/Categoria_Controlador.php');
 		<div id="imagen" class="modal fade" tabindex="-1" role="dialog">
   			<div class="modal-dialog">
    				<div class="modal-content">
-      				<div class="modal-header">
+      				<div class="modal-header text-center">
         				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         				<h4 id="Titulo" class="modal-title"></h4>
       				</div>
