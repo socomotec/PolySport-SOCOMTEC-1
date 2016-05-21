@@ -42,10 +42,10 @@ $Id_categoria = $_REQUEST['id_categoria'];
 				descripcion =$("#descripcion").text();
 				img = $("#imagen-producto").attr("src");
 				
-				$("#Mmarca").html("<strong>Marca: </strong>" + marca);
-				$("#Mprecio").html("<strong>precio: </strong>" + precio);
-				$("#Mdescripcion").html("<strong>Descripcion: </strong>" + descripcion);
-				$("#Mproducto").html("<strong>Nombre: </strong>" + nombre);
+				$("#Mmarca").html( marca);
+				$("#Mprecio").html(precio);
+				$("#Mdescripcion").html(descripcion);
+				$("#Mproducto").html(nombre);
 				$("#MimgNormal").attr("src",img);
 				$("#MimgNormal").addClass("imagen-producto");
 				$('#mostrar').modal('show');
