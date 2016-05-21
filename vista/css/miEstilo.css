@@ -1,12 +1,4 @@
-/* EMPIEZA PARALLAX */
 
-/* imagen index*/
-/*body
-{
-margin: 0, 0, 0, 0;
-padding: 0;
-
-}*/
 
 #index {
 background: url(../img/imagen1.jpg) no-repeat center center fixed; 
@@ -163,6 +155,7 @@ white-space: nowrap;     /* no permite multilinea */
 overflow: hidden;        /* ocultar el resto */
 }
 
+
 .list {
   font-family:sans-serif;
 }
@@ -232,4 +225,24 @@ input:focus {
   top:-4px;
   right:-5px;
 }
+
+.zoom div{
+-webkit-transition:all 0.7s ease; /* Safari y Chrome */
+-moz-transition:all 0.7s ease; /* Firefox */
+-o-transition:all 0.7s ease; /* IE 9 */
+-ms-transition:all 0.7s ease; /* Opera */
+}
+.zoom div:hover {
+-webkit-transform:scale(1.05);
+-moz-transform:scale(1.05);
+-ms-transform:scale(1.05);
+-o-transform:scale(1.05);
+transform:scale(1.05);
+border-color: black;
+}
+.texto{
+  margin: 10px
+}
+
+
 
