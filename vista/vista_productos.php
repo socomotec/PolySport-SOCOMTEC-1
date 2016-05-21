@@ -58,7 +58,7 @@ $Id_categoria = $_REQUEST['id_categoria'];
 
 <?php foreach (producto_categoria($Id_categoria) as $datos) {?>
 
-	
+<!-- modificar para crear cuadros-->	
 
 <div class="row" id="container-producto">
 	<div id="container-producto">
