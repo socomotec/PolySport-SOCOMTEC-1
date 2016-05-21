@@ -8,8 +8,7 @@ $Id_Producto = explode("-", $Id_Separar);
 
 foreach (producto_especifico($Id_Producto) as $ListP) {
 
-
-	
+	hola seba gay
 
 }
 
