@@ -16,7 +16,4 @@ class Conections
 
  }  
 
-
- /* echo "<h1> hola </h1>"; */
-
  ?>
