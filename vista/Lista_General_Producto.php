@@ -233,25 +233,23 @@ require_once('../controlador/Categoria_Controlador.php');
 
 		<hr>
 <div class="row">
-	<div class="col-xs-12">
+	<div class="">
 		<div class="panel panel-default">
 		  <!-- Default panel contents -->
-		  	<div class="panel-heading text-center"> <i class="fa fa-list-alt"></i>  <strong> LISTA DE PRODUCTOS</strong> </div>
-		  	
-
+		  	<div class="panel-heading text-center col-xd-10"> <i class="fa fa-list-alt"></i>  <strong> LISTA DE PRODUCTOS</strong> </div>
 		  <!-- Table -->
-			  	<table cellspacing="1" class="table table-striped table-hover tablesorter" id="Tabla_Productos">
+			  	<table cellspacing="1" class="table table-striped table-hover tablesorter text-center" id="Tabla_Productos">
 					<thead>
-					  	<tr class="text-center">
-					    	<th><a> Nombre </a> </th>
+					  	<tr class="success">
+					    	<th class="text-center"><a class=""> Nombre </a> </th>
 
-					    	<th><a> Marca</a></th>
+					    	<th class="text-center"><a> Marca</a></th>
 
-					    	<th><a> Categoria </a></th>
+					    	<th class="text-center"><a> Categoria </a></th>
 					    	
-					    	<th><a> Precio </a></th>
+					    	<th class="text-center"><a> Precio </a></th>
 
-					    	<th><a> Acciones</a></th>
+					    	<th class="text-center"><a> Acciones</a></th>
 
 					    </tr>
 					<thead>
