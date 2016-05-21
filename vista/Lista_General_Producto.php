@@ -35,7 +35,7 @@ require_once('../controlador/Categoria_Controlador.php');
 		<script src="js/miEstilo.js"></script>
 		<script type="text/javascript" src="js/Tablejquery-latest.js"></script> 
 		<script type="text/javascript" src="js/Table/jquery.tablesorter.min.js"></script> 
-		<script src="http://listjs.com/no-cdn/list.js"></script>
+		<script src="js/list.min.js"></script>
 
 		<script>
 		$(document).ready(function() {
