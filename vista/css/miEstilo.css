@@ -137,10 +137,11 @@ margin-top: 200px;
 #imagen-producto{
   height: 200px;
   width: 623px;
-
-
 }
-
+.imagen-producto{
+  height: 90%;
+  width: 95%;
+}
 #jumbo-informacion{
 background:white;
 
@@ -168,6 +169,7 @@ overflow: hidden;        /* ocultar el resto */
 -moz-transition:all 0.7s ease; /* Firefox */
 -o-transition:all 0.7s ease; /* IE 9 */
 -ms-transition:all 0.7s ease; /* Opera */
+cursor:pointer;
 }
 .zoom div:hover {
 -webkit-transform:scale(1.05);
@@ -175,10 +177,9 @@ overflow: hidden;        /* ocultar el resto */
 -ms-transform:scale(1.05);
 -o-transform:scale(1.05);
 transform:scale(1.05);
-border-color: black;
+border-color: cornflowerblue;
 }
-.texto{
-  margin: 10px
+.corre{
+  margin: 10px;
 }
-
 
