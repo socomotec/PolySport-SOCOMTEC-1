@@ -8,7 +8,8 @@ if(!isset($_SESSION['usuario'])){ //evaluamos si existe el inicio de session
 }
 
 require_once('../controlador/Producto_Controlador.php');
-
+require_once('../controlador/Marca_Controlador.php');
+require_once('../controlador/Categoria_Controlador.php');
 
  ?>
 
@@ -139,10 +140,10 @@ require_once('../controlador/Producto_Controlador.php');
 
 							var tribut = $(this).attr("id"); //EXTREMOS EL NUMERO DE LA ID
          					var formudato = new FormData();
-         					formudato.append('id_producto', tribut);
+         					formudato.append('producto', tribut);
 						//Poner un ajax que vaya a buscar la informacion para mostrarla, en la edición.
 
-       						var miAjax = $.ajax({
+       						$.ajax({
         					async: false,
         					type: 'POST',
         					url: 'Capturar_Buscar_Producto.php',
@@ -152,9 +153,14 @@ require_once('../controlador/Producto_Controlador.php');
         					dataType: 'json',
 
       
-      						}).done(function(response) { 
+      						}).done(function(datos) { 
 
-
+      							$('#Editar_Nombre_Producto').val(datos[1]);
+      							$('#slc-marca > option[value=' + datos[5] + ']').attr('selected', 'selected');
+      							$('#slc-categoria > option[value=' + datos[2] + ']').attr('selected', 'selected');
+      							$('#Editar_Precio_Producto').val(datos[4]);
+      							$('#Editar_Descripcion_Producto').val(datos[3]);
+      							
           						
 
     						});
@@ -241,13 +247,69 @@ require_once('../controlador/Producto_Controlador.php');
 
       				<div class="modal-body">
 							
+							<div class="form-group">
+    							<label>Nombre del Producto: </label>
+    							<input type="text" class="form-control" name="nombre_producto" id="Editar_Nombre_Producto">
+  							</div>
+							
+							<label>Marca:</label> <select class="form-control" name="select_marca" id="slc-marca">
+  								   <option value="0">Ingresar Marca</option>
+  								   <?php foreach (lista_marca() as $ListM) { ?>		
+								    <option value=<?php echo $ListM['id_marca']?> > <?php echo $ListM['nombre_marca']; ?></option>
+							        <?php } ?>	
+
+  								  </select>
+  							<br />
+
+  							<label>Categoria:</label> 
+  							<select class="form-control" name="select_categoria" id="slc-categoria">
+  										<option value ="0">Ingrese Categoria</option>
+  										<?php foreach (lista_categoria() as $ListC) { ?>
+							
+										<option value=<?php echo $ListC['id_categoria']; ?> ><?php echo $ListC['nombre_categoria']; ?></option>
+										<?php }?>
+  							</select>
+							<br />
+  							<div class="form-group">
+    							<label>Precio: </label>
+    							<input type="text" class="form-control" name="precio" id="Editar_Precio_Producto">
+  							</div>
+							
+  							<label>Descripcion: </label> <textarea class="form-control" rows="3" id="Editar_Descripcion_Producto" name="descripcion"></textarea>
+
+			 
+			 
+
 							
 
       				</div>
 
       				<div class="modal-footer">
-        				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        				<button type="button" class="btn btn-primary">Save changes</button>
+        				<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+        				<button type="button" class="btn btn-primary">Guardar</button>
+      				</div>
+    			</div><!-- /.modal-content -->
+  			</div><!-- /.modal-dialog -->
+		</div><!-- /.modal -->
+
+		<div id="mostrar_imagen" class="modal fade" tabindex="-1" role="dialog">
+  			<div class="modal-dialog">
+   				<div class="modal-content">
+      				<div class="modal-header">
+        				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        				<h4 class="modal-title">Imagen</h4>
+      				</div>
+
+      				<div class="modal-body">
+							
+							
+							
+
+      				</div>
+
+      				<div class="modal-footer">
+        				<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+        				<button type="button" class="btn btn-primary">Guardar</button>
       				</div>
     			</div><!-- /.modal-content -->
   			</div><!-- /.modal-dialog -->
