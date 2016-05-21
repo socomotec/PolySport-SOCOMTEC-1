@@ -8,7 +8,12 @@ $Id_Producto = explode("-", $Id_Separar);
 
 foreach (producto_especifico($Id_Producto) as $ListP) {
 
-	hola seba gay
+	$idproducto = $ListP['id_producto'];
+	$nombreproducto = $ListP['nombre_producto'];
+	$categoriaproducto = $ListP['id_categoria'];
+	$descripcionproducto = $ListP['descripcion'];
+	$precioproducto = $ListP['precio'];
+	$marcaproducto = $ListP['id_marca'];
 
 }
 
@@ -16,6 +21,10 @@ $ProductoArray = array();
 
 $ProductoArray[0] = $idproducto;
 $ProductoArray[1] = $nombreproducto;
+$ProductoArray[2] = $categoriaproducto;
+$ProductoArray[3] = $descripcionproducto;
+$ProductoArray[4] = $precioproducto;
+$ProductoArray[5] = $marcaproducto;
 
 echo json_encode($ProductoArray);
 

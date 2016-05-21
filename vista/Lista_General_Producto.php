@@ -154,7 +154,7 @@ require_once('../controlador/Producto_Controlador.php');
       
       						}).done(function(response) { 
 
-      								
+
           						
 
     						});
@@ -240,6 +240,7 @@ require_once('../controlador/Producto_Controlador.php');
       				</div>
 
       				<div class="modal-body">
+							
 							
 
       				</div>
