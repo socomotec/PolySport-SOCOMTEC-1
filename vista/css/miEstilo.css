@@ -163,5 +163,22 @@ white-space: nowrap;     /* no permite multilinea */
 overflow: hidden;        /* ocultar el resto */
 }
 
+.zoom div{
+-webkit-transition:all 0.7s ease; /* Safari y Chrome */
+-moz-transition:all 0.7s ease; /* Firefox */
+-o-transition:all 0.7s ease; /* IE 9 */
+-ms-transition:all 0.7s ease; /* Opera */
+}
+.zoom div:hover {
+-webkit-transform:scale(1.05);
+-moz-transform:scale(1.05);
+-ms-transform:scale(1.05);
+-o-transform:scale(1.05);
+transform:scale(1.05);
+border-color: black;
+}
+.texto{
+  margin: 10px
+}
 
 

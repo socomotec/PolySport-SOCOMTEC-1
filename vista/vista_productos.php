@@ -27,8 +27,33 @@ $Id_categoria = $_REQUEST['id_categoria'];
 		<script src="js/bootbox.min.js"></script>
 		<script src="js/jquery-ui.js"></script>
 		<script src="js/miEstilo.js"></script>
+		
+		<script>
+			function mostrar() {
+				$('#mostrar').modal('show');
+			}
+			    		
+			/*$("#ver-"+arre[i]).click(function(event) {
+				var tribut = $(this).attr("id"); //EXTREMOS EL NUMERO DE LA ID
+         		var formudato = new FormData();
+         		formudato.append('producto', tribut);
+				//Poner un ajax que vaya a buscar la informacion para mostrarla, en la edición.
 
-
+				$.ajax({
+					async: false,
+					type: 'POST',
+					url: 'Capturar_Buscar_Producto.php',
+					data: formudato,
+					contentType:false,
+					processData:false,
+					dataType: 'json',
+      			}).done(function(datos) { 
+      				$("#Mostrar_foto").attr("src", datos[6]+datos[7]);
+   					$("#Titulo").text(datos[1]);
+    			});
+    			$('#mostrar').modal('show');
+			});*/
+		</script>
 </head>
 
 
@@ -40,7 +65,7 @@ $Id_categoria = $_REQUEST['id_categoria'];
 
 <?php require_once('Menu_Clientes.php'); ?>
 <div class="container">
-		<p><h2 style="text-align:center;">Productos</h2></p>
+		<p><h1 style="text-align:center;"><strong> Productos </strong></h1></p>
 			<br/>
 			<hr />	
 </div>
@@ -48,20 +73,18 @@ $Id_categoria = $_REQUEST['id_categoria'];
 <div class="container">
 			<?php foreach (producto_categoria($Id_categoria) as $datos) {?>
 			<!-- modificar para crear cuadros -->	
-				<div class="container-fluid col-md-4">
-					<a href=<?php echo $datos["url_producto"].$datos["nombre_img"]; ?> >
-						<div>
+				<div class="container-fluid col-md-4" onclick="mostrar()">
+						<div class="zoom">
 							<div class="thumbnail">
 								<img src=<?php echo $datos["url_producto"].$datos["nombre_img"];?> id="imagen-producto"/>
-								<div class="caption">
-									<h3 style="text-align:center;"><strong><?php echo $datos["nombre_producto"]; ?></strong></h3>
+								<div class="texto">
+									<h2 style="text-align:center;"><strong><?php echo $datos["nombre_producto"]; ?></strong></h2>
 									<p><strong>Marca:</strong> <?php echo $datos["nombre_marca"]; ?> </p>
 									<p><strong>Precio:</strong> $<?php echo $datos["precio"]; ?> </p>
-									<P class="ocultartxt"><strong>Descripcion:</strong><?php echo $datos["descripcion"]; ?></P>
+									<P class="ocultartxt"><strong>Descripcion: </strong><?php echo $datos["descripcion"]; ?></P>
 								</div>
 							</div>
 						</div>
-					</a>
 				</div>
 			<?php } ?>
 		</div> 
@@ -72,8 +95,30 @@ $Id_categoria = $_REQUEST['id_categoria'];
 		 <li><a href="#">Siguiente</a></li>
 	  </ul>
 </nav>	
-
-	
+<!-- 
+	producto
+	imagen
+	nombre 
+	precio
+	la descripcion
+	--->
+	<div id="mostrar" class="modal">
+		<div class="modal-dialog">
+			<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4 class="modal-title">Modal title</h4>
+			</div>
+			<div class="modal-body">
+				<p>One fine body…</p>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				<button type="button" class="btn btn-primary">Save changes</button>
+			</div>
+			</div>
+		</div>
+	</div>
   
 </body>
 
