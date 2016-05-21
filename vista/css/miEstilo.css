@@ -135,7 +135,7 @@ margin-top: 200px;
 }
 
 #imagen-producto{
-  height: 150px;
+  height: 200px;
   width: 623px;
 
 
@@ -157,5 +157,10 @@ background-color:#FAFAFA;
   
 }
 
+.ocultartxt{
+ text-overflow: ellipsis; /* puntos suspensivos */
+white-space: nowrap;     /* no permite multilinea */
+overflow: hidden;        /* ocultar el resto */
+}
 
 

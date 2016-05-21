@@ -40,70 +40,41 @@ $Id_categoria = $_REQUEST['id_categoria'];
 
 <?php require_once('Menu_Clientes.php'); ?>
 <div class="container">
-				<p><h2 style="text-align:center;">Productos</h2></p>
-
-
-
+		<p><h2 style="text-align:center;">Productos</h2></p>
 			<br/>
 			<hr />	
 </div>
 
 <div class="container">
-	 <div class="row">
-	 	
+			<?php foreach (producto_categoria($Id_categoria) as $datos) {?>
+			<!-- modificar para crear cuadros -->	
+				<div class="container-fluid col-md-4">
+					<a href=<?php echo $datos["url_producto"].$datos["nombre_img"]; ?> >
+						<div>
+							<div class="thumbnail">
+								<img src=<?php echo $datos["url_producto"].$datos["nombre_img"];?> id="imagen-producto"/>
+								<div class="caption">
+									<h3 style="text-align:center;"><strong><?php echo $datos["nombre_producto"]; ?></strong></h3>
+									<p><strong>Marca:</strong> <?php echo $datos["nombre_marca"]; ?> </p>
+									<p><strong>Precio:</strong> $<?php echo $datos["precio"]; ?> </p>
+									<P class="ocultartxt"><strong>Descripcion:</strong><?php echo $datos["descripcion"]; ?></P>
+								</div>
+							</div>
+						</div>
+					</a>
+				</div>
+			<?php } ?>
+		</div> 
+		    
+ <nav>
+	 <ul class="pager pager-lg">
+		 <li><a href="#">Atras</a></li>
+		 <li><a href="#">Siguiente</a></li>
+	  </ul>
+</nav>	
 
-	 </div> 
-         
-
-
-<?php foreach (producto_categoria($Id_categoria) as $datos) {?>
-
-<!-- modificar para crear cuadros-->	
-
-<div class="row" id="container-producto">
-	<div id="container-producto">
-		  <div class="col-xs-12 col-sm-offset-2 col-md-offset-2 col-sm-3 col-md-3">
-				    <a href=<?php echo $datos["url_producto"].$datos["nombre_img"]; ?> class="thumbnail">
-				      <img src=<?php echo $datos["url_producto"].$datos["nombre_img"];?> id="imagen-producto"/>
-				    </a>
-		  </div>
-
-		  <div class="col-xs-12 col-sm-5 col-md-5" >
-		  		<h3 style="text-align:center;"><?php echo $datos["nombre_producto"]; ?></h3>
-		  		<P><?php echo $datos["descripcion"]; ?></P>
-		  		<p><strong>Marca:</strong> <?php echo $datos["nombre_marca"]; ?> </p>
-		  		<p><strong>Precio:</strong> $<?php echo $datos["precio"]; ?> </p>
-		  			
-
-		  </div>
-	</div>	  
-</div>
-
-
-<hr/>
-
-
-
-	<?php } ?>
-
-
-	 	<nav>
-			  <ul class="pager pager-lg">
-			    <li><a href="#">Atras</a></li>
-			    <li><a href="#">Siguiente</a></li>
-			  </ul>
-		</nav>
-
-
-
-	 	
-	 	
-  </div>     
+	
   
-  
-
-
 </body>
-
 
 </html>
