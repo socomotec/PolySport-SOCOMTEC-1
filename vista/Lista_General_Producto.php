@@ -136,7 +136,30 @@ require_once('../controlador/Producto_Controlador.php');
 
 				$("#editar-"+arre[i]).click(function(event) {
 					
-						alert("prueba");
+
+							var tribut = $(this).attr("id"); //EXTREMOS EL NUMERO DE LA ID
+         					var formudato = new FormData();
+         					formudato.append('id_producto', tribut);
+						//Poner un ajax que vaya a buscar la informacion para mostrarla, en la edición.
+
+       						var miAjax = $.ajax({
+        					async: false,
+        					type: 'POST',
+        					url: 'Capturar_Buscar_Producto.php',
+        					data: formudato,
+        					contentType:false,
+        					processData:false,
+        					dataType: 'json',
+
+      
+      						}).done(function(response) { 
+
+      								
+          						
+
+    						});
+
+						$('#edicion').modal('show');
 
 				});
 		
@@ -208,11 +231,26 @@ require_once('../controlador/Producto_Controlador.php');
 
 	</div>
 
-	<div id="edicion">
-		
+		<div id="edicion" class="modal fade" tabindex="-1" role="dialog">
+  			<div class="modal-dialog">
+   				<div class="modal-content">
+      				<div class="modal-header">
+        				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        				<h4 class="modal-title">Editar Producto</h4>
+      				</div>
 
+      				<div class="modal-body">
+							
 
-	</div>
+      				</div>
+
+      				<div class="modal-footer">
+        				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        				<button type="button" class="btn btn-primary">Save changes</button>
+      				</div>
+    			</div><!-- /.modal-content -->
+  			</div><!-- /.modal-dialog -->
+		</div><!-- /.modal -->
 
 
 </body>
