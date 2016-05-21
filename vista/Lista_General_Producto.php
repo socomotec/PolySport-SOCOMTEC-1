@@ -133,7 +133,34 @@ require_once('../controlador/Categoria_Controlador.php');
 
          	});
 
+				$("#ver-"+arre[i]).click(function(event) {
+	
 
+						var tribut = $(this).attr("id"); //EXTREMOS EL NUMERO DE LA ID
+         					var formudato = new FormData();
+         					formudato.append('producto', tribut);
+						//Poner un ajax que vaya a buscar la informacion para mostrarla, en la edición.
+
+       						$.ajax({
+        					async: false,
+        					type: 'POST',
+        					url: 'Capturar_Buscar_Producto.php',
+        					data: formudato,
+        					contentType:false,
+        					processData:false,
+        					dataType: 'json',
+
+      
+      						}).done(function(datos) { 
+
+      							$("#Mostrar_foto").attr("src", datos[6]+datos[7]);
+      							
+      							
+          						
+
+    						});
+    						$('#imagen').modal('show');
+				});
 
 				$("#editar-"+arre[i]).click(function(event) {
 					
@@ -168,6 +195,8 @@ require_once('../controlador/Categoria_Controlador.php');
 						$('#edicion').modal('show');
 
 				});
+
+				
 		
 
 		}
@@ -224,7 +253,7 @@ require_once('../controlador/Categoria_Controlador.php');
 
 						<td><input type="button" class="btn btn-danger" id="<?php echo 'eliminar-'.$ListP['id_producto'];  ?>" value="Eliminar" />
 						<input type="button" class="btn btn-default" id="<?php echo 'editar-'.$ListP['id_producto'];  ?>" value="Editar" /></td>
-						<td><button class="btn btn-primary" onclick="window.location.href='<?php echo $ListP['url_producto'].$ListP['nombre_img']; ?>'" /> Ver Imagen</button></td>
+						<td><button class="btn btn-primary" id="<?php echo 'ver-'.$ListP['id_producto']; ?>" /> Ver Imagen</button></td>
 
 					</tr>
 					<?php } ?>
@@ -292,7 +321,7 @@ require_once('../controlador/Categoria_Controlador.php');
   			</div><!-- /.modal-dialog -->
 		</div><!-- /.modal -->
 
-		<div id="mostrar_imagen" class="modal fade" tabindex="-1" role="dialog">
+		<div id="imagen" class="modal fade" tabindex="-1" role="dialog">
   			<div class="modal-dialog">
    				<div class="modal-content">
       				<div class="modal-header">
@@ -302,7 +331,7 @@ require_once('../controlador/Categoria_Controlador.php');
 
       				<div class="modal-body">
 							
-							
+							<img id="Mostrar_foto" src="" alt="" class="img-rounded" width="100%">
 							
 
       				</div>

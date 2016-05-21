@@ -15,7 +15,8 @@ foreach (producto_especifico($Id_Producto[1]) as $ListP) {
 	$descripcionproducto = $ListP['descripcion'];
 	$precioproducto = $ListP['precio'];
 	$marcaproducto = $ListP['id_marca'];
-
+	$urlproducto = $ListP['url_producto'];
+	$imgproducto = $ListP['nombre_img'];
 }
 
 $ProductoArray = array();
@@ -26,6 +27,8 @@ $ProductoArray[2] = $categoriaproducto;
 $ProductoArray[3] = $descripcionproducto;
 $ProductoArray[4] = $precioproducto;
 $ProductoArray[5] = $marcaproducto;
+$ProductoArray[6] = $urlproducto;
+$ProductoArray[7] = $imgproducto;
 
 echo json_encode($ProductoArray);
 
