@@ -154,7 +154,7 @@ require_once('../controlador/Categoria_Controlador.php');
       						}).done(function(datos) { 
 
       							$("#Mostrar_foto").attr("src", datos[6]+datos[7]);
-      							
+      							$("#Titulo").text(datos[1]);
       							
           						
 
@@ -226,34 +226,58 @@ require_once('../controlador/Categoria_Controlador.php');
 	<div class="col-xs-12">
 		<div class="panel panel-default">
 		  <!-- Default panel contents -->
-		  	<div class="panel-heading"> <i class="fa fa-list-alt"></i>  <strong> LISTA DE PRODUCTOS</strong> </div>
+		  	<div class="panel-heading text-center"> <i class="fa fa-list-alt"></i>  <strong> LISTA DE PRODUCTOS</strong> </div>
 		  	
 
 		  <!-- Table -->
-			  	<table class="table table-condensed table-hover">
+			  	<table class="table table-striped table-hover text-center">
 
 					  	<tr>
 					    	<td><strong> Nombre </strong> </td>
+
+					    	<td><strong> Marca</strong></td>
+
+					    	<td><strong> Categoria </strong></td>
 					    	
 					    	<td><strong> Precio </strong></td>
 
-					    	<td><strong> Modificar</strong></td>
+					    	<td><strong> Acciones</strong></td>
 
-		      				<td><strong> Ver </strong></td>
-					        
-
+					    </tr>
+					    <tr> 
+							<td> </td>
+							<td> </td>
+							<td> </td>
+							<td> </td>
+							<td> </td>
 					    </tr>
 
 					<?php foreach (lista_general_producto() as $ListP) { ?>
 					<tr>	
 						
-						<td><?php echo $ListP['nombre_producto']; ?> </td>
+						<td> <?php echo $ListP['nombre_producto']; ?> </td>
+
+						<td> <?php foreach(mostrar_especifico_marca($ListP['id_marca']) as $ListM){
+
+								echo $ListM['nombre_marca'];
+
+						}  ?> </td>
+
+						<td> <?php foreach(lista_categoria_especifica($ListP['id_categoria']) as $ListC){
+
+								echo $ListC['nombre_categoria'];
+
+						}  ?> </td>
 						
 						<td> <?php echo $ListP['precio']; ?> </td>
 
-						<td><input type="button" class="btn btn-danger" id="<?php echo 'eliminar-'.$ListP['id_producto'];  ?>" value="Eliminar" />
-						<input type="button" class="btn btn-default" id="<?php echo 'editar-'.$ListP['id_producto'];  ?>" value="Editar" /></td>
-						<td><button class="btn btn-primary" id="<?php echo 'ver-'.$ListP['id_producto']; ?>" /> Ver Imagen</button></td>
+						<td>
+
+						<button class="btn btn-warning" id="<?php echo 'editar-'.$ListP['id_producto'];  ?>" title="Editar"> <i class="glyphicon glyphicon-pencil"> </i></button>
+						<button class="btn btn-danger" id="<?php echo 'eliminar-'.$ListP['id_producto'];  ?>" title="Eliminar"> <i class="glyphicon glyphicon-trash"> </i></button>
+						<button class="btn btn-primary" id="<?php echo 'ver-'.$ListP['id_producto']; ?>" title="Ver Imagen"> <i class="glyphicon glyphicon-eye-open"> </i></button>
+
+						</td>
 
 					</tr>
 					<?php } ?>
@@ -326,7 +350,7 @@ require_once('../controlador/Categoria_Controlador.php');
    				<div class="modal-content">
       				<div class="modal-header">
         				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        				<h4 class="modal-title">Imagen</h4>
+        				<h4 id="Titulo" class="modal-title"></h4>
       				</div>
 
       				<div class="modal-body">
@@ -337,8 +361,7 @@ require_once('../controlador/Categoria_Controlador.php');
       				</div>
 
       				<div class="modal-footer">
-        				<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-        				<button type="button" class="btn btn-primary">Guardar</button>
+        				<button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
       				</div>
     			</div><!-- /.modal-content -->
   			</div><!-- /.modal-dialog -->
