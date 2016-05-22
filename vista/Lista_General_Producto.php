@@ -242,7 +242,7 @@ require_once('../controlador/Categoria_Controlador.php');
 	<div id="productos">
 
 			<div class="text-right">
-		  		<label for="busquedad">Buscar: </label>
+		  		<label> Buscar: </label>
 		  		<input class="search" id="txt-busquedad">
 		  	
 			</div>
