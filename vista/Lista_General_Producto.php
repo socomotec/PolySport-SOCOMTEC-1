@@ -36,17 +36,19 @@ require_once('../controlador/Categoria_Controlador.php');
 		<script type="text/javascript" src="js/Tablejquery-latest.js"></script> 
 		<script type="text/javascript" src="js/Table/jquery.tablesorter.min.js"></script> 
 		<script src="js/list.min.js"></script>
-		
+		<script src="js/list.pagination.min.js"></script>		
 		<script>
 		$(document).ready(function() {
 
+//Buscar y Paginar
 
-				var options = {
-  				valueNames: [ 'nombre', 'marca', 'categoria', 'precio', 'acciones' ]
-						};
+	        	var monkeyList = new List('productos', {
+  				valueNames: ['nombre', 'marca', 'categoria', 'precio', 'acciones'],
+  				page: 10,
+  				plugins: [ ListPagination({}) ] 
+				});	
 
-				var productosList = new List('productos', options);
-
+// aca ordeno asc y desc
 			$("#Tabla_Productos").tablesorter();
 			$("#Tabla_Productos").tablesorter( {sortList: [[0,0], [1,0]]} );
 			$("#Tabla_Productos").tablesorter({ 
@@ -248,7 +250,7 @@ require_once('../controlador/Categoria_Controlador.php');
 
 		<div class="panel panel-default">
 		  <!-- Default panel contents -->
-		  	<div class="panel-heading text-center col-xd-10"> <i class="fa fa-list-alt"></i>  <strong> LISTA DE PRODUCTOS</strong> </div>
+		  	<div class="panel-heading text-center col-xd-10"> <i class="fa fa-list-alt" ></i>  <strong> LISTA DE PRODUCTOS</strong> </div>
 		  <!-- Table -->
 			  	<table cellspacing="1" class="table table-striped table-hover tablesorter text-center" id="Tabla_Productos">
 					<thead>
@@ -265,7 +267,7 @@ require_once('../controlador/Categoria_Controlador.php');
 
 					    </tr>
 					<thead>
-
+					
 					<tbody class="list">
 					<?php foreach (lista_general_producto() as $ListP) { ?>
 					<tr>	
@@ -302,27 +304,12 @@ require_once('../controlador/Categoria_Controlador.php');
 						
 					
 					</tbody>
+				
 
 				</table>
-			<nav class="text-center">
-  				<ul class="pagination">
-   					<li>
-      					<a href="#" aria-label="Previous">
-        					<span aria-hidden="true">&laquo;</span>
-      					</a>
-    				</li>
-    				<li><a href="#">1</a></li>
-    				<li><a href="#">2</a></li>
-    				<li><a href="#">3</a></li>
-    				<li><a href="#">4</a></li>
-    				<li><a href="#">5</a></li>
-    				<li>
-      					<a href="#" aria-label="Next">
-        					<span aria-hidden="true">&raquo;</span>
-      					</a>
-    				</li>
-  				</ul>
-			</nav>
+			<div class="text-center">
+			<ul class="pagination"></ul>
+			<div>
 			</div>
 			
 		</div>
