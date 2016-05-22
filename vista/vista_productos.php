@@ -31,20 +31,9 @@ $Id_categoria = $_REQUEST['id_categoria'];
 		<script src="js/list.pagination.min.js"></script>	
 		
 		<script>
-			$(document).ready(function() {
 
-		//Buscar y Paginar
-
-	        	var monkeyList = new List('productos', {
-  				valueNames: ['productol'],
-  				page: 5,
-  				plugins: [ ListPagination({}) ] 
-				});	
-
-			
-			var nombre, marca, precio, descripcion, img;
-			
-			function mostrar(){
+		var nombre, marca, precio, descripcion, img;
+		function mostrar(){
 				
 				limpiar();
 				
@@ -78,27 +67,17 @@ $Id_categoria = $_REQUEST['id_categoria'];
 
 
 			};	
-			/*$("#ver-"+arre[i]).click(function(event) {
-				var tribut = $(this).attr("id"); //EXTREMOS EL NUMERO DE LA ID
-         		var formudato = new FormData();
-         		formudato.append('producto', tribut);
-				//Poner un ajax que vaya a buscar la informacion para mostrarla, en la edición.
 
-				$.ajax({
-					async: false,
-					type: 'POST',
-					url: 'Capturar_Buscar_Producto.php',
-					data: formudato,
-					contentType:false,
-					processData:false,
-					dataType: 'json',
-      			}).done(function(datos) { 
-      				$("#Mostrar_foto").attr("src", datos[6]+datos[7]);
-   					$("#Titulo").text(datos[1]);
-    			});
-    			$('#mostrar').modal('show');
-			});*/
+			$(document).ready(function() {
 
+		//Buscar y Paginar
+
+	        	var monkeyList = new List('productos', {
+  				valueNames: ['nombre', 'marca', 'precio'],
+  				page: 9,
+  				plugins: [ ListPagination({}) ] 
+				});	
+			
 			});
 		</script>
 </head>
@@ -113,8 +92,7 @@ $Id_categoria = $_REQUEST['id_categoria'];
 <?php require_once('Menu_Clientes.php'); ?>
 <div class="container">
 		<p><h1 style="text-align:center;"><strong> Productos </strong></h1></p>
-			<br/>
-			<hr />	
+			
 </div>
 	
 	<div class="container">
@@ -124,7 +102,7 @@ $Id_categoria = $_REQUEST['id_categoria'];
 		  		<label for="busquedad">Buscar: </label>
 		  		<input class="search" id="txt-busquedad">
 			</div>
-
+			<hr />	
 			<div class="list">
 			<?php foreach (producto_categoria($Id_categoria) as $datos) {?>
 			<!-- modificar para crear cuadros -->	
@@ -132,9 +110,9 @@ $Id_categoria = $_REQUEST['id_categoria'];
 					<div class="zoom">
 						<div class="thumbnail">
 							<img  id="imagen-producto" src=<?php echo $datos["url_producto"].$datos["nombre_img"];?> class="img-responsive" alt="Responsive image"/>
-							<h2  id="nombre" class="corre productol" style="text-align:center;"><strong><?php echo $datos["nombre_producto"]; ?></strong></h2>
-							<p  id="marca" class="corre "><strong>Marca:</strong> <?php echo $datos["nombre_marca"]; ?> </p>
-							<p  id="precio"class="corre"><strong>Precio:</strong> $<?php echo $datos["precio"]; ?> </p>
+							<h2  id="nombre" class="corre nombre" style="text-align:center;"><strong><?php echo $datos["nombre_producto"]; ?></strong></h2>
+							<p  id="marca" class="corre marca"><strong>Marca:</strong> <?php echo $datos["nombre_marca"]; ?> </p>
+							<p  id="precio" class="corre precio"><strong>Precio:</strong> $<?php echo $datos["precio"]; ?> </p>
 							<P  id="descripcion"class="ocultartxt corre"><strong>Descripcion: </strong><?php echo $datos["descripcion"]; ?></P>					
 						</div>
 					</div>
@@ -143,14 +121,12 @@ $Id_categoria = $_REQUEST['id_categoria'];
 			</div>
 		</div> 
 	</div>
-	
+	<!--
 	<div class="text-center">
-			<ul class="pagination"></ul>
-			<div>
-			</div>
-			
-		</div>
-	
+  		<ul class="pagination">
+  		</ul>
+	</div>
+-->
   <div id="mostrar" class="modal fade" id="myModal" role="dialog">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
