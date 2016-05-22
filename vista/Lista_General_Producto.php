@@ -32,9 +32,7 @@ require_once('../controlador/Categoria_Controlador.php');
 		<script src="js/bootstrap.min.js"></script>
 		<script src="js/bootbox.min.js"></script>
 		<script src="js/jquery-ui.js"></script>
-		<script src="js/miEstilo.js"></script>
-		<script type="text/javascript" src="js/Tablejquery-latest.js"></script> 
-		<script type="text/javascript" src="js/Table/jquery.tablesorter.min.js"></script> 
+		<script src="js/miEstilo.js"></script> 
 		<script src="js/list.min.js"></script>
 		<script src="js/list.pagination.min.js"></script>		
 		<script>
@@ -42,19 +40,9 @@ require_once('../controlador/Categoria_Controlador.php');
 
 //Buscar y Paginar
 
-	        	var monkeyList = new List('productos', {
-  				valueNames: ['nombre', 'marca', 'categoria', 'precio', 'acciones'],
-  				page: 10,
-  				plugins: [ ListPagination({}) ] 
-				});	
+	        	
 
-// aca ordeno asc y desc
-			$("#Tabla_Productos").tablesorter();
-			$("#Tabla_Productos").tablesorter( {sortList: [[0,0], [1,0]]} );
-			$("#Tabla_Productos").tablesorter({ 
-        // sort on the first column and third column, order asc 
-        sortList: [[0,0],[2,0]] 
-    }); 
+
 			
 			var listasProducto = "";
 			var Arreglo = new Array();
@@ -221,7 +209,11 @@ require_once('../controlador/Categoria_Controlador.php');
 		}
 	
 
-				
+			var monkeyList = new List('productos', {
+  				valueNames: ['nombre', 'marca', 'categoria', 'precio'],
+  				page: 3,
+  				plugins: [ ListPagination({}) ] 
+				});		
 
 		});
 
@@ -307,8 +299,9 @@ require_once('../controlador/Categoria_Controlador.php');
 				
 
 				</table>
+
 			<div class="text-center">
-			<ul class="pagination"></ul>
+				<ul class="pagination"></ul>
 			<div>
 			</div>
 			
