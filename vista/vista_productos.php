@@ -131,28 +131,33 @@ $Id_categoria = $_REQUEST['id_categoria'];
 	precio
 	la descripcion
 	--->
-<div id="mostrar" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-				<h4 id="Mproducto" class="modal-title">Modal title</h4>
-			</div>
-			<div class="modal-body">
+	
+ <!-- Modal -->
+  <div id="mostrar" class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 id="Mproducto" class="modal-title">Modal title</h4>
+        </div>
+        <div class="modal-body">
+			<div class="container-fluid">
 				<div class="row col-sm-8">
 					<img id="MimgNormal"/>
 				</div>
 				<div class="row col-sm-4">
 					<p id="Mmarca"></p>
 					<p id="Mprecio"></p>
-					<P id="Mdescripcion"></P>	
+					<P id="Mdescripcion"></P>
 				</div>
-			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
-			</div>
-		</div>
-	</div>
+          	</div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
   
 </body>
