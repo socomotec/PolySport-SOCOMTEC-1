@@ -49,7 +49,7 @@ $Id_categoria = $_REQUEST['id_categoria'];
 				$("#MimgNormal").attr("src",img);
 				$("#MimgNormal").addClass("imagen-producto");
 				$('#mostrar').modal('show');
-			}
+			};
 			
 			function limpiar(){
 				nombre = "";
@@ -58,12 +58,14 @@ $Id_categoria = $_REQUEST['id_categoria'];
 				descripcion = "";
 				img = "";
 				
-				$("#Mmarca").html("");
-				$("#Mprecio").html("");
-				$("#Mdescripcion").html("");
-				$("#Mproducto").html("");
+				$("#Mmarca").text(null);
+				$("#Mprecio").text(null);
+				$("#Mdescripcion").text(null);
+				$("#Mproducto").text(null);
 				$("#MimgNormal").attr("src", null);
-			}    		
+
+
+			};	
 			/*$("#ver-"+arre[i]).click(function(event) {
 				var tribut = $(this).attr("id"); //EXTREMOS EL NUMERO DE LA ID
          		var formudato = new FormData();
@@ -137,12 +139,12 @@ $Id_categoria = $_REQUEST['id_categoria'];
         <div class="modal-body">
 			<div class="container-fluid">
 				<div class="row col-sm-8">
-					<img id="MimgNormal"/>
+					<img id="MimgNormal" class="thumbnail" />
 				</div>
 				<div class="row col-sm-4">
-					<p id="Mmarca"></p>
-					<p id="Mprecio"></p>
-					<P id="Mdescripcion"></P>
+					<p id="Mmarca">marca</p>
+					<p id="Mprecio" >precio</p>
+					<P id="Mdescripcion">descripcion</P>
 				</div>
           	</div>
         </div>
@@ -152,7 +154,7 @@ $Id_categoria = $_REQUEST['id_categoria'];
       </div>
     </div>
   </div>
-</div>
+
   
 </body>
 
