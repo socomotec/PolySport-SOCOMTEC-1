@@ -125,11 +125,7 @@ $Id_categoria = $_REQUEST['id_categoria'];
 	  </ul>
 </nav>	
 <!-- 
-	producto
-	imagen
-	nombre 
-	precio
-	la descripcion
+	ffghfghfghyfthfthfghfht
 	--->
 	
  <!-- Modal -->
