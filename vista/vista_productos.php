@@ -27,8 +27,20 @@ $Id_categoria = $_REQUEST['id_categoria'];
 		<script src="js/bootbox.min.js"></script>
 		<script src="js/jquery-ui.js"></script>
 		<script src="js/miEstilo.js"></script>
+		<script src="js/list.min.js"></script>
+		<script src="js/list.pagination.min.js"></script>	
 		
 		<script>
+			$(document).ready(function() {
+
+		//Buscar y Paginar
+
+	        	var monkeyList = new List('productos', {
+  				valueNames: ['productol'],
+  				page: 5,
+  				plugins: [ ListPagination({}) ] 
+				});	
+
 			
 			var nombre, marca, precio, descripcion, img;
 			
@@ -86,6 +98,8 @@ $Id_categoria = $_REQUEST['id_categoria'];
     			});
     			$('#mostrar').modal('show');
 			});*/
+
+			});
 		</script>
 </head>
 
@@ -102,33 +116,41 @@ $Id_categoria = $_REQUEST['id_categoria'];
 			<br/>
 			<hr />	
 </div>
-
+	
 	<div class="container">
+			<div id="productos">
+			
+			<div class="text-right">
+		  		<label for="busquedad">Buscar: </label>
+		  		<input class="search" id="txt-busquedad">
+			</div>
+
+			<div class="list">
 			<?php foreach (producto_categoria($Id_categoria) as $datos) {?>
 			<!-- modificar para crear cuadros -->	
-				<div  class="container-fluid col-xs-12 col-sm-6 col-md-4" onclick="mostrar()">
+				<div  class="container-fluid col-xs-12 col-sm-6 col-md-4 " onclick="mostrar()">
 					<div class="zoom">
 						<div class="thumbnail">
 							<img  id="imagen-producto" src=<?php echo $datos["url_producto"].$datos["nombre_img"];?> class="img-responsive" alt="Responsive image"/>
-							<h2  id="nombre" class="corre" style="text-align:center;"><strong><?php echo $datos["nombre_producto"]; ?></strong></h2>
-							<p  id="marca" class="corre"><strong>Marca:</strong> <?php echo $datos["nombre_marca"]; ?> </p>
+							<h2  id="nombre" class="corre productol" style="text-align:center;"><strong><?php echo $datos["nombre_producto"]; ?></strong></h2>
+							<p  id="marca" class="corre "><strong>Marca:</strong> <?php echo $datos["nombre_marca"]; ?> </p>
 							<p  id="precio"class="corre"><strong>Precio:</strong> $<?php echo $datos["precio"]; ?> </p>
 							<P  id="descripcion"class="ocultartxt corre"><strong>Descripcion: </strong><?php echo $datos["descripcion"]; ?></P>					
 						</div>
 					</div>
 				</div>
 			<?php } ?>
+			</div>
 		</div> 
-		    
- <nav>
-	 <ul class="pager pager-lg">
-		 <li><a href="#">Atras</a></li>
-		 <li><a href="#">Siguiente</a></li>
-	  </ul>
-</nav>	
-
+	</div>
 	
- <!-- Modal -->
+	<div class="text-center">
+			<ul class="pagination"></ul>
+			<div>
+			</div>
+			
+		</div>
+	
   <div id="mostrar" class="modal fade" id="myModal" role="dialog">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
@@ -154,6 +176,8 @@ $Id_categoria = $_REQUEST['id_categoria'];
       </div>
     </div>
   </div>
+	
+	
 
   
 </body>
