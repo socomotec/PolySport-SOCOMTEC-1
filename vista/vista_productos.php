@@ -124,9 +124,7 @@ $Id_categoria = $_REQUEST['id_categoria'];
 		 <li><a href="#">Siguiente</a></li>
 	  </ul>
 </nav>	
-<!-- 
-	ffghfghfghyfthfthfghfht
-	--->
+
 	
  <!-- Modal -->
   <div id="mostrar" class="modal fade" id="myModal" role="dialog">
