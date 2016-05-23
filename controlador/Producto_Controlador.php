@@ -51,4 +51,11 @@ function mostrar_por_fechas(){
 	return $datos;
 }
 
+function editar_producto($id_producto, $nombre_producto, $marca_producto, $categoria_producto, $precio_producto, $descripcion_producto){
+
+	$Prducto = new Producto();
+
+	$editar = $Prducto->editar_producto($id_producto, $nombre_producto, $marca_producto, $categoria_producto, $precio_producto, $descripcion_producto);
+}
+
  ?>

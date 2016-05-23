@@ -2,13 +2,10 @@
 require_once('../conector/Conexion.php');
 require_once('../controlador/Producto_Controlador.php');
 
-
 class Producto {
 
 	private $db;
 	private $t_var;
-
-
 
 	public function __construct()
 
@@ -25,8 +22,15 @@ class Producto {
 			$consult->bind_param('sssisisi', $url_producto, $nombre_producto, $nombre_imagen, $id_categoria, $descripcion, $precio, $fecha_subida, $id_marca);
 			$consult->execute();
 			    
-
 		}
+
+	public function editar_producto($id_producto, $nombre_producto, $marca_producto, $categoria_producto, $precio_producto, $descripcion_producto){
+
+			$consult = $this->db->prepare("UPDATE producto SET nombre_producto = ?,  id_categoria = ?, descripcion = ?, precio = ?, id_marca = ? WHERE id_producto = ?");
+			$consult->bind_param('sisiii', $nombre_producto, $categoria_producto, $descripcion_producto, $precio_producto, $marca_producto, $id_producto);
+			$consult->execute();
+
+	}
 
 		public function mostrar_todos_productos()
 
@@ -43,7 +47,6 @@ class Producto {
 			return $this->t_var;
 			
 		}
-
 
 		public function mostrar_productos_categoria($Id_categoria)
 
@@ -77,7 +80,6 @@ class Producto {
 			
 				}
 
-
 		public function mostrar_productos_categoria2($Id_categoria)
 
 		{
@@ -93,11 +95,6 @@ class Producto {
 			return $this->t_var;
 			
 		}
-		
-
-
-
-
 
 		public function eliminar_producto($Id_Producto)
 		{
@@ -105,10 +102,8 @@ class Producto {
 			$consult->bind_param('i', $Id_Producto);
 			$consult->execute();
 
-
 		}
 		
-
 		public function mostrar_productos_fechas()
 
 		{

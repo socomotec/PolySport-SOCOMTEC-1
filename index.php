@@ -209,7 +209,7 @@ if(isset($_SESSION['usuario'])){ //evaluamos si existe el inicio de session
 
 				      	<form id="formulario_session">
 				      	 <div class="input-group">
-    						  <span class="input-group-addon" id="sizing-addon1">@</span>
+    						  <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-envelope-o fa-fw"> </i></span>
    							 <input type="email" class="form-control" name="txt-email" id="exampleInputEmail1" placeholder="Email">
   						 </div>
 

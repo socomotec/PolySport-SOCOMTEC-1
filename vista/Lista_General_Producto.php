@@ -34,15 +34,10 @@ require_once('../controlador/Categoria_Controlador.php');
 		<script src="js/jquery-ui.js"></script>
 		<script src="js/miEstilo.js"></script> 
 		<script src="js/list.min.js"></script>
-		<script src="js/list.pagination.min.js"></script>		
+		<script src="js/list.pagination.min.js"></script>
+
 		<script>
 		$(document).ready(function() {
-
-//Buscar y Paginar
-
-	        	
-
-
 			
 			var listasProducto = "";
 			var Arreglo = new Array();
@@ -62,13 +57,10 @@ require_once('../controlador/Categoria_Controlador.php');
 
   		 	 <?php }?> 
 
-  		 	
-
 						$('#txt-busquedad').autocomplete({
 					 	
 							source:Arreglo
-							
-				
+											
 						});
 
 
@@ -76,17 +68,13 @@ require_once('../controlador/Categoria_Controlador.php');
 			<?php foreach (lista_general_producto() as $ListC) { ?> //PASAMOS METODO LISTA DE PRODUCTO
  		  		incrementador += 1;
  		  		var Prueba_php = [ <?php echo $ListC['id_producto']; ?> ]; //VALORES QUE LE VAMOS A PASAR AL ARREGLO
-
  		  	
  		  		arre[incrementador] = Prueba_php; //GUARDAMOS LOS VALORES DENTRO DEL ARREGLO QUE SE RECORRE SOLO
-
-  		  	
+	  	
 		  <?php } ?>
-								
-  		 	
+								 	
   		 	for( var i = 0; i<arre.length; i++) //DEFINIMOS LOS PARAMETROS PARA RECORRER EL ARREGLO
 		{
-
 
 			$("#eliminar-"+arre[i]).click(function() { //CREAMOS UNA FUNCION DE UN CLICK DENTRO DEL FOR PARA CAPTURAR LA LISTA
          	  
@@ -112,8 +100,7 @@ require_once('../controlador/Categoria_Controlador.php');
 										data: formudato, 
 										contentType:false,
 										processData:false,
-										dataType: 'json',
-										
+										dataType: 'json',										
 										
 									  })
 									  .done(function() {
@@ -146,6 +133,7 @@ require_once('../controlador/Categoria_Controlador.php');
 						var tribut = $(this).attr("id"); //EXTREMOS EL NUMERO DE LA ID
          					var formudato = new FormData();
          					formudato.append('producto', tribut);
+
 						//Poner un ajax que vaya a buscar la informacion para mostrarla, en la edición.
 
        						$.ajax({
@@ -156,17 +144,14 @@ require_once('../controlador/Categoria_Controlador.php');
         					contentType:false,
         					processData:false,
         					dataType: 'json',
-
       
       						}).done(function(datos) { 
 
       							$("#Mostrar_foto").attr("src", datos[6]+datos[7]);
-      							$("#Titulo").text(datos[1]);
-      							
-          						
+      							$("#Titulo").text(datos[1]);         						
 
     						});
-    						$('#imagen').modal('show');
+    							$('#imagen').modal('show');
 				});
 
 				$("#editar-"+arre[i]).click(function(event) {
@@ -174,8 +159,7 @@ require_once('../controlador/Categoria_Controlador.php');
 
 							var tribut = $(this).attr("id"); //EXTREMOS EL NUMERO DE LA ID
          					var formudato = new FormData();
-         					formudato.append('producto', tribut);
-						//Poner un ajax que vaya a buscar la informacion para mostrarla, en la edición.
+         					formudato.append('producto', tribut);						
 
        						$.ajax({
         					async: false,
@@ -185,33 +169,83 @@ require_once('../controlador/Categoria_Controlador.php');
         					contentType:false,
         					processData:false,
         					dataType: 'json',
-
       
       						}).done(function(datos) { 
 
-      							$('#Editar_Nombre_Producto').val(datos[1]);
+      							$('#editar_producto').val(datos[0]);
+      							$("#editar_producto").hide();
+      							$('#editar_nombre_producto').val(datos[1]);
       							$('#slc-marca > option[value=' + datos[5] + ']').attr('selected', 'selected');
       							$('#slc-categoria > option[value=' + datos[2] + ']').attr('selected', 'selected');
       							$('#Editar_Precio_Producto').val(datos[4]);
       							$('#Editar_Descripcion_Producto').val(datos[3]);
       							
-          						
-
     						});
 
 						$('#edicion').modal('show');
 
-				});
-
-				
-		
+				});	
 
 		}
+
+		$("#guardar_edicion").click(function(event) {
+
+							var formudato = new FormData();
+         					formudato.append('id_producto', $('#editar_producto').val());
+         					formudato.append('nombre_producto', $('#editar_nombre_producto').val());
+         					formudato.append('slc_marca', $('#slc-marca').val());
+         					formudato.append('slc_categoria', $('#slc-categoria').val());
+         					formudato.append('precio_producto', $('#Editar_Precio_Producto').val());
+         					formudato.append('descripcion', $('#Editar_Descripcion_Producto').val());
+						
+       						$.ajax({
+        					async: false,
+        					type: 'POST',
+        					url: 'Recibe_Editar_Producto.php',
+        					data: formudato,
+        					contentType:false,
+        					processData:false,
+        					dataType: 'json',
+      
+      						}).done(function(datos){ 
+
+      						if(datos== "Si"){
+
+      							bootbox.dialog({
+  									message: "La información a sido editada con exito",
+  									title: "Confirmación",
+  									buttons: {
+    									success: {
+      									label: "OK",
+      									className: "btn-primary",
+      										callback: function() {
+        									document.location.reload();
+      									}
+    								}
+    							 	},
+								});
+
+      							
+      						}else{
+
+      							bootbox.alert("Hubo un error al cargar los datos, por favor intentelo mas tarde");
+      						}
+
+      						//
+
+    						}); // Cierre de done.
+
+    						$('#edicion').modal('hide');
+    						
+          					//	
+
+		}); // Cierre de la Funcion Click en la guardar edicion.
 	
+// Buscar y Paginar Con List JS
 
 			var monkeyList = new List('productos', {
   				valueNames: ['nombre', 'marca', 'categoria', 'precio'],
-  				page: 3,
+  				page: 10,
   				plugins: [ ListPagination({}) ] 
 				});		
 
@@ -219,16 +253,14 @@ require_once('../controlador/Categoria_Controlador.php');
 
 		</script>
 
-
 </head>
- <body>
-<?php require_once('menu_administrador.php'); ?>
+<body>
 
-	<div class="container">
-		<h1 class="text-center">Lista de Productos</h1>
+	<?php require_once('menu_administrador.php'); ?>
+
+<div class="container">
+			<h1 class="text-center">Lista de Productos</h1>
 	<hr />
-		 	
-
 		
 <div class="row">
 	<div id="productos">
@@ -236,8 +268,7 @@ require_once('../controlador/Categoria_Controlador.php');
 			<div class="text-right">
 		  		<label> Buscar: </label>
 		  		<input class="search" id="txt-busquedad">
-		  	
-			</div>
+			</div> <!-- cierre del Buscar -->
 			<br/>
 
 		<div class="panel panel-default">
@@ -247,18 +278,15 @@ require_once('../controlador/Categoria_Controlador.php');
 			  	<table cellspacing="1" class="table table-striped table-hover tablesorter text-center" id="Tabla_Productos">
 					<thead>
 					  	<tr class="success">
-					    	<th class="text-center"><a class=""> Nombre </a> </th>
 
+					    	<th class="text-center"><a> Nombre </a> </th>
 					    	<th class="text-center"><a> Marca</a></th>
-
-					    	<th class="text-center"><a> Categoria </a></th>
-					    	
+					    	<th class="text-center"><a> Categoria </a></th>					    	
 					    	<th class="text-center"><a> Precio </a></th>
-
 					    	<th class="text-center"><a> Acciones</a></th>
 
 					    </tr>
-					<thead>
+					</thead>
 					
 					<tbody class="list">
 					<?php foreach (lista_general_producto() as $ListP) { ?>
@@ -289,25 +317,13 @@ require_once('../controlador/Categoria_Controlador.php');
 						</td>
 
 						</tr>
-						<?php } ?>
-
-					
-					
-						
-					
+						<?php } ?>										
 					</tbody>
-				
-
 				</table>
-
 			<div class="text-center">
 				<ul class="pagination"></ul>
-			<div>
 			</div>
-			
 		</div>
-	</div>
-
 	</div>
 
 		<div id="edicion" class="modal fade" tabindex="-1" role="dialog">
@@ -319,10 +335,10 @@ require_once('../controlador/Categoria_Controlador.php');
       				</div>
 
       				<div class="modal-body">
-							
+							<input type="text" name="id_producto" id="editar_producto" /> 
 							<div class="form-group">
     							<label>Nombre del Producto: </label>
-    							<input type="text" class="form-control" name="nombre_producto" id="Editar_Nombre_Producto">
+    							<input type="text" class="form-control" name="nombre_producto" id="editar_nombre_producto" />
   							</div>
 							
 							<label>Marca:</label> <select class="form-control" name="select_marca" id="slc-marca">
@@ -350,16 +366,11 @@ require_once('../controlador/Categoria_Controlador.php');
 							
   							<label>Descripcion: </label> <textarea class="form-control" rows="5" id="Editar_Descripcion_Producto" name="descripcion"></textarea>
 
-			 
-			 
-
-							
-
       				</div>
 
       				<div class="modal-footer">
         				<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-        				<button type="button" class="btn btn-primary">Guardar</button>
+        				<button type="button" class="btn btn-primary" id="guardar_edicion">Guardar</button>
       				</div>
     			</div><!-- /.modal-content -->
   			</div><!-- /.modal-dialog -->
@@ -377,7 +388,6 @@ require_once('../controlador/Categoria_Controlador.php');
 							
 							<img id="Mostrar_foto" src="" alt="" class="img-rounded" width="100%">
 							
-
       				</div>
 
       				<div class="modal-footer">
@@ -386,7 +396,8 @@ require_once('../controlador/Categoria_Controlador.php');
     			</div><!-- /.modal-content -->
   			</div><!-- /.modal-dialog -->
 		</div><!-- /.modal -->
-
+</div>
+</div>
 
 </body>
 </html>
