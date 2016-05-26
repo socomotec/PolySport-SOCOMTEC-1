@@ -106,16 +106,7 @@ require_once('../controlador/Usuario_Controlador.php');
                 }
               }
              }
-            });   //SE CIERRA EL BOTON DE DIALOGO
-        
-            
-                   
-            
-                              
-             
-
-            
-          
+            });   //SE CIERRA EL BOTON DE DIALOGO        
          });
 
 
@@ -228,7 +219,6 @@ require_once('../controlador/Usuario_Controlador.php');
            }
         }
 
-        
         });  //cierra el boton click 
         
               
@@ -286,7 +276,7 @@ require_once('../controlador/Usuario_Controlador.php');
             <form id="formulario_mostrar">
                       <div class="form-group">
                         <label for="Rut">Run:</label>
-                        <input type="text" class="form-control" id="txt-rut" name="rut">
+                        <input type="text" class="form-control" id="txt-rut" name="rut" disabled="disabled">
                       </div>
 
                       <div class="form-group">
@@ -303,14 +293,15 @@ require_once('../controlador/Usuario_Controlador.php');
                         <label for="Rut">Email:</label>
                         <input type="text" class="form-control" id="txt-email" name="email">
                       </div>
+                      
+                      <br/>
+                  
+                      <div class="text-right">
+                          <input type="button" class="btn btn-warning" value="Guardar" id="btn-guardar" /> 
+                      </div>
 
-                  <div class="row">
-                           <div class="col-xs-4">
-                            <input type="button" class="btn btn-warning" value="Guardar" id="btn-guardar" /> 
-                  </div>
 
-
-                  </div>  
+                    
         
         
 

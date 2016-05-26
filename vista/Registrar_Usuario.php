@@ -129,7 +129,19 @@ if(!isset($_SESSION['usuario'])){ //evaluamos si existe el inicio de session
 		largo = crut.length;
 		if ( largo <2 )
 		{
-			alert('rut inválido');
+			bootbox.dialog({
+  									message: "¡El RUN ingresado no es válido!",
+  									title: "Alerta",
+  									buttons: {
+    									success: {
+      									label: "OK",
+      									className: "btn-primary",
+      										callback: function() {
+        									document.location.reload();
+      									}
+    								}
+    							 	},
+								});
 			return false;
 		}
 		for ( i=0; i <crut.length ; i++ )
@@ -177,7 +189,19 @@ if(!isset($_SESSION['usuario'])){ //evaluamos si existe el inicio de session
  
 		if ( dvr != dv.toLowerCase() )
 		{
-			alert('El Rut Ingreso es Invalido');
+			bootbox.dialog({
+  									message: "¡El RUN ingresado no es válido!",
+  									title: "Alerta",
+  									buttons: {
+    									success: {
+      									label: "OK",
+      									className: "btn-primary",
+      										callback: function() {
+        									document.location.reload();
+      									}
+    								}
+    							 	},
+								});
 			
 			return false;
 		}
