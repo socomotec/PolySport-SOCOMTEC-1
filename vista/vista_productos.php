@@ -21,14 +21,13 @@ $Id_categoria = $_REQUEST['id_categoria'];
 		<link rel="stylesheet" type="text/css" href="css/font-awesome.min.css" />
 	    <link rel="stylesheet" tyspe="text/css" href="css/animate.css" />
 	    <link rel="stylesheet" type="text/css" href="css/jquery-ui.css" />
-
 		<script src="js/jquery-1.11.3.min.js"></script>
 		<script src="js/bootstrap.min.js"></script>
 		<script src="js/bootbox.min.js"></script>
 		<script src="js/jquery-ui.js"></script>
-		<script src="js/miEstilo.js"></script>
+		<script src="js/miEstilo.js"></script> 
 		<script src="js/list.min.js"></script>
-		<script src="js/list.pagination.min.js"></script>	
+		<script src="js/list.pagination.min.js"></script>
 		
 		<script>
 
@@ -74,8 +73,8 @@ $Id_categoria = $_REQUEST['id_categoria'];
 
 	        	var monkeyList = new List('productos', {
   				valueNames: ['nombre', 'marca', 'precio'],
-  				page: 9,
-  				plugins: [ ListPagination({}) ] 
+  				//page: 10,
+  				//plugins: [ ListPagination({}) ] 
 				});	
 			
 			});
@@ -98,7 +97,7 @@ $Id_categoria = $_REQUEST['id_categoria'];
 	<div class="container">
 			<div id="productos">
 			
-			<div class="text-right">
+			<div class="text-right ">
 		  		<label for="busquedad">Buscar: </label>
 		  		<input class="search" id="txt-busquedad">
 			</div>
@@ -109,17 +108,17 @@ $Id_categoria = $_REQUEST['id_categoria'];
 				<div  class="container-fluid col-xs-12 col-sm-6 col-md-4 " onclick="mostrar()">
 					<div class="zoom">
 						<div class="thumbnail">
-							<img  id="imagen-producto" src=<?php echo $datos["url_producto"].$datos["nombre_img"];?> class="img-responsive" alt="Responsive image"/>
+							<img  id="imagen-producto" class="img-responsive" alt="Responsive image" src=<?php echo $datos["url_producto"].$datos["nombre_img"];?> />
 							<h2  id="nombre" class="corre nombre" style="text-align:center;"><strong><?php echo $datos["nombre_producto"]; ?></strong></h2>
 							<p  id="marca" class="corre marca"><strong>Marca:</strong> <?php echo $datos["nombre_marca"]; ?> </p>
 							<p  id="precio" class="corre precio"><strong>Precio:</strong> $<?php echo $datos["precio"]; ?> </p>
-							<P  id="descripcion"class="ocultartxt corre"><strong>Descripcion: </strong><?php echo $datos["descripcion"]; ?></P>					
+							<P  id="descripcion" class="ocultartxt corre"><strong>Descripcion: </strong><?php echo $datos["descripcion"]; ?></P>					
 						</div>
 					</div>
 				</div>
 			<?php } ?>
 			</div>
-		</div> 
+		</div>
 	</div>
 	<!--
 	<div class="text-center">
