@@ -134,14 +134,14 @@ $Id_categoria = $_REQUEST['id_categoria'];
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 id="Mproducto" class="modal-title">Modal title</h4>
+          <h2 id="Mproducto" class="modal-title text-center"> Modal title</h2>
         </div>
         <div class="modal-body">
 			<div class="container-fluid">
-				<div class="row col-sm-8">
-					<img id="Mimagen" class="thumbnail img-responsive" />
+				<div class="row col-xs-12 col-sm-12 col-md-8" >
+					<img id="Mimagen" class="thumbnail img-responsive maxwit" alt="Responsive image" style=" max-width:500px;" />
 				</div>
-				<div class="row col-sm-4">
+				<div class="row col-xs-12 col-sm-12 col-md-4" >
 					<p id="Mmarca">marca</p>
 					<p id="Mprecio" >precio</p>
 					<P id="Mdescripcion">descripcion</P>
