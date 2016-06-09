@@ -110,7 +110,7 @@ $Id_categoria = $_REQUEST['id_categoria'];
 				<div  class="container-fluid col-xs-12 col-sm-6 col-md-4"  onClick="mostrar(this.id)"  id="<?php echo $datos["id_producto"]; ?>" >
 					<div class="zoom">
 						<div class="thumbnail">
-							<img src=<?php echo $datos["url_producto"].$datos["nombre_img"];?> class="img-responsive" alt="Responsive image"/>
+							<img src=<?php echo $datos["url_producto"].$datos["nombre_img"];?> class="img-responsive" alt="Responsive image" style="height:300px; "/>
 							<p class="hide" id=<?php echo 'imagen-'.$datos['id_producto']; ?> > <?php echo $datos["url_producto"].$datos["nombre_img"];?> </p>	
 							<h2  id="<?php echo 'nombre-'.$datos['id_producto']; ?>" class="corre" style="text-align:center;"><strong><?php echo $datos["nombre_producto"]; ?></strong></h2>
 							<p  id="<?php echo 'marca-'.$datos['id_producto']; ?>" class="corre"><strong>Marca:</strong> <?php echo $datos["nombre_marca"]; ?> </p>
