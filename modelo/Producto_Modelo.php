@@ -84,7 +84,7 @@ class Producto {
 
 		{
 
-			$consult = $this->db->query("SELECT url_producto, nombre_producto, nombre_img, id_categoria, descripcion, precio, fecha_subida, nombre_marca FROM producto INNER JOIN marca ON(producto.id_marca = marca.id_marca) WHERE id_categoria = '$Id_categoria' ORDER BY precio");
+			$consult = $this->db->query("SELECT id_producto, url_producto, nombre_producto, nombre_img, id_categoria, descripcion, precio, fecha_subida, nombre_marca FROM producto INNER JOIN marca ON(producto.id_marca = marca.id_marca) WHERE id_categoria = '$Id_categoria' ORDER BY precio");
 
 			while($var_selec = $consult->fetch_assoc()){
 

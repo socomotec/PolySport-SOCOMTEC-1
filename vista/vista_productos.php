@@ -32,24 +32,6 @@ $Id_categoria = $_REQUEST['id_categoria'];
 		<script>
 
 		var nombre, marca, precio, descripcion, img;
-		function mostrar(){
-				
-				limpiar();
-				
-				nombre = $("#nombre").text();
-				marca = $("#marca").text();
-				precio = $("#precio").text();
-				descripcion =$("#descripcion").text();
-				img = $("#imagen-producto").attr("src");
-				
-				$("#Mmarca").html( marca);
-				$("#Mprecio").html(precio);
-				$("#Mdescripcion").html(descripcion);
-				$("#Mproducto").html(nombre);
-				$("#MimgNormal").attr("src",img);
-				$("#MimgNormal").addClass("imagen-producto");
-				$('#mostrar').modal('show');
-			};
 			
 			function limpiar(){
 				nombre = "";
@@ -63,19 +45,38 @@ $Id_categoria = $_REQUEST['id_categoria'];
 				$("#Mdescripcion").text(null);
 				$("#Mproducto").text(null);
 				$("#MimgNormal").attr("src", null);
-
-
 			};	
+
+			function mostrar(id){
+				limpiar();
+
+					nombre = $("#nombre-" + id).text();
+					img = $("#imagen-" + id).text();
+					precio = $("#precio-" + id).text();
+					marca = $("#marca-" + id).text();
+					descripcion = $("#descripcion-" + id).text();
+
+					//alert(img);
+
+					$("#Mmarca").text(marca);
+					$("#Mprecio").text(precio);
+					$("#Mdescripcion").text(descripcion);
+					$("#Mproducto").text(nombre);
+					$("#Mimagen").attr("src", img);
+
+					$("#mostrar").modal();
+				};
 
 			$(document).ready(function() {
 
+				
 		//Buscar y Paginar
 
-	        	var monkeyList = new List('productos', {
-  				valueNames: ['nombre', 'marca', 'precio'],
+	        	//var monkeyList = new List('productos', {
+  				//valueNames: ['nombre', 'marca', 'precio'],
   				//page: 10,
   				//plugins: [ ListPagination({}) ] 
-				});	
+				//});	
 			
 			});
 		</script>
@@ -103,16 +104,18 @@ $Id_categoria = $_REQUEST['id_categoria'];
 			</div>
 			<hr />	
 			<div class="list">
-			<?php foreach (producto_categoria($Id_categoria) as $datos) {?>
+			<?php 
+			foreach (producto_categoria($Id_categoria) as $datos) {?>
 			<!-- modificar para crear cuadros -->	
-				<div  class="container-fluid col-xs-12 col-sm-6 col-md-4 " onclick="mostrar()">
+				<div  class="container-fluid col-xs-12 col-sm-6 col-md-4"  onClick="mostrar(this.id)"  id="<?php echo $datos["id_producto"]; ?>" >
 					<div class="zoom">
 						<div class="thumbnail">
-							<img  id="imagen-producto" class="img-responsive" alt="Responsive image" src=<?php echo $datos["url_producto"].$datos["nombre_img"];?> />
-							<h2  id="nombre" class="corre nombre" style="text-align:center;"><strong><?php echo $datos["nombre_producto"]; ?></strong></h2>
-							<p  id="marca" class="corre marca"><strong>Marca:</strong> <?php echo $datos["nombre_marca"]; ?> </p>
-							<p  id="precio" class="corre precio"><strong>Precio:</strong> $<?php echo $datos["precio"]; ?> </p>
-							<P  id="descripcion" class="ocultartxt corre"><strong>Descripcion: </strong><?php echo $datos["descripcion"]; ?></P>					
+							<img src=<?php echo $datos["url_producto"].$datos["nombre_img"];?> class="img-responsive" alt="Responsive image"/>
+							<p class="hide" id=<?php echo 'imagen-'.$datos['id_producto']; ?> > <?php echo $datos["url_producto"].$datos["nombre_img"];?> </p>	
+							<h2  id="<?php echo 'nombre-'.$datos['id_producto']; ?>" class="corre" style="text-align:center;"><strong><?php echo $datos["nombre_producto"]; ?></strong></h2>
+							<p  id="<?php echo 'marca-'.$datos['id_producto']; ?>" class="corre"><strong>Marca:</strong> <?php echo $datos["nombre_marca"]; ?> </p>
+							<p  id="<?php echo 'precio-'.$datos['id_producto']; ?>" class="corre"><strong>Precio:</strong> $<?php echo $datos["precio"]; ?> </p>
+							<P  id="<?php echo 'descripcion-'.$datos['id_producto']; ?>" class="ocultartxt corre" ><strong>Descripcion: </strong><?php echo $datos["descripcion"]; ?></P>					
 						</div>
 					</div>
 				</div>
@@ -136,7 +139,7 @@ $Id_categoria = $_REQUEST['id_categoria'];
         <div class="modal-body">
 			<div class="container-fluid">
 				<div class="row col-sm-8">
-					<img id="MimgNormal" class="thumbnail" />
+					<img id="Mimagen" class="thumbnail img-responsive" />
 				</div>
 				<div class="row col-sm-4">
 					<p id="Mmarca">marca</p>
